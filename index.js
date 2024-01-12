@@ -1,18 +1,23 @@
 function hasTargetSum(array, target) {
-  // Write your algorithm here
+  let myNumbers = new Set();
+  for (let number of array) {
+    let difference = target - number;
+
+    if (myNumbers.has(difference)) {
+      return true;
+    }
+    myNumbers.add(number);
+  }
+  return false;
 }
 
 /* 
   Write the Big O time complexity of your function here
 */
 
-/* 
-  Add your pseudocode here
-*/
-
 /*
-  Add written explanation of your solution here
-*/
+  Add a written explanation of your solution here
+  My Explanation: THe code above examines any pair of numbers in the array and tests to see if it adds up to the target number. If the summation meets this condition, it returns "true" in the terminal but "false" if it doesn't*/
 
 // You can run `node index.js` to view these console logs
 if (require.main === module) {
@@ -29,6 +34,19 @@ if (require.main === module) {
 
   console.log("Expecting: false");
   console.log("=>", hasTargetSum([1, 2, 5], 4));
+
+  console.log("Expecting: true");
+  console.log("=>", hasTargetSum([-7, 10, 4, 8], 3));
+
+  console.log("Expecting: true");
+  console.log("=>", hasTargetSum([1, 2, 3, 4], 5));
+
+  console.log("Expecting: true");
+  console.log("=>", hasTargetSum([2, 2, 3, 3], 4));
+
+  console.log("Expecting: false");
+  console.log("=>", hasTargetSum([4], 5));
+
 }
 
 module.exports = hasTargetSum;
